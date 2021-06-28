@@ -39,7 +39,7 @@
               <v-icon @click="$emit('user', user)" v-else size="200">mdi-account-circle</v-icon>
             </v-col>
             <v-col @click="$emit('user', user)" cols="12" class="text-h4 pb-6">
-              {{user.name}}
+              {{user.username}}
             </v-col>
           </v-row>
         <!-- </v-sheet> -->

@@ -17,10 +17,6 @@
               <v-icon>mdi-close</v-icon>
             </v-btn>
           </v-card-title>
-
-          <v-card-text>
-            Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
-          </v-card-text>
           <v-form
             ref="form"
             @submit.prevent="submit"
@@ -32,11 +28,32 @@
                   sm="6"
                 >
                   <v-text-field
-                    v-model="form.name"
-                    :rules="rules.name"
-                    label="Nom"
+                    v-model="form.username"
+                    :rules="rules.username"
+                    label="Nom d'utilisateur"
                     required
                   ></v-text-field>
+                </v-col>
+                <v-col
+                  cols="12"
+                  sm="6"
+                >
+                  <v-switch
+                    v-model="switch1"
+                    :label="`Switch 1: ${switch1.toString()}`"
+                  ></v-switch>
+                </v-col>
+                <v-col
+                  cols="12"
+                  sm="6"
+                >
+                  
+                </v-col>
+                <v-col
+                  cols="12"
+                  sm="6"
+                >
+                  
                 </v-col>
               </v-row>
             </v-container>
@@ -69,7 +86,12 @@
     name: 'Register',
     data () {
       const defaultForm = Object.freeze({
-        name: '',
+        username: '',
+        micro: true,
+        led: true,
+        alarm: true,
+        city: '',
+        audio: true
        
       })
 

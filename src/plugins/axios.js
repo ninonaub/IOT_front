@@ -63,8 +63,17 @@ Vue.use({
                 
             })
         }
-        Vue.prototype.$get = async (path) => {
-            return axios.get('http://localhost:5000/'+path)
+        let axiosConfig = {
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                "Access-Control-Allow-Origin": "*",
+                'accept': 'application/json',
+            }
+          };
+        Vue.prototype.$get = async (path, data={}) => {
+            let params= {params: data }
+            console.log(params)
+            return axios.get('http://localhost:5000/'+path, params)
             .then((res)=> {
                 console.log(res)
                 if (res.status == 200)
@@ -75,8 +84,9 @@ Vue.use({
                 
             })
         }
-        Vue.prototype.$post = async (path, data) => {
-            return axios.post('http://localhost:5000/'+path)
+        Vue.prototype.$post = async (path, data = {}) => {
+            let params= JSON.stringify(data)
+            return axios.post('http://localhost:5000/'+ path, params, axiosConfig )
             .then((res)=> {
                 console.log(res)
                 if (res.status == 200)
@@ -88,7 +98,22 @@ Vue.use({
             })
         }
         Vue.prototype.$put = async (path, data) => {
-            return axios.put('http://localhost:5000/'+path)
+            let params= JSON.stringify(data)
+            return axios.put('http://localhost:5000/'+path, params, axiosConfig)
+            .then((res)=> {
+                console.log(res)
+                if (res.status == 200)
+                    return res.data
+            })
+            .then((res)=> {
+                return res
+                
+            })
+        }
+
+        Vue.prototype.$patch = async (path, data) => {
+            let params= JSON.stringify(data)
+            return axios.patch('http://localhost:5000/'+path, params, axiosConfig)
             .then((res)=> {
                 console.log(res)
                 if (res.status == 200)

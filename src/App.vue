@@ -38,6 +38,12 @@ export default {
   }),
   created(){
     this.$vuetify.theme.dark = this.$store.state.user['dark_mode']
+    this.$get('user/active')
+      .then((res)=> {
+        console.log('active',res, this.$route.name)
+        if (res === null && this.$route.name !== 'Auth')
+          this.$router.push('/auth')
+      })
   }
 };
 </script>

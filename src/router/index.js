@@ -24,6 +24,11 @@ const routes = [
     path: '/alert',
     name: 'Alert',
     component: () => import('../views/Alert.vue')
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: () => import('../views/Profile.vue')
   }
 ]
 
