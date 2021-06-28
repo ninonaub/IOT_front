@@ -30,7 +30,7 @@
         
       </v-col>
       <v-col cols="12" sm="6" class="py-4" v-for="location in locations" :key="location" v-show="ready == 0">
-        <WeatherCard :location="location" @ready="ready--" :onlyCurrent />
+        <WeatherCard :location="location" @ready="ready--" onlyCurrent />
       </v-col>
       <v-col  v-if="ready !== 0" >
         <v-progress-circular class="v-col" :size="70" :width="7" color="amber" indeterminate />
