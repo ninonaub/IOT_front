@@ -63,6 +63,54 @@ Vue.use({
                 
             })
         }
+        Vue.prototype.$get = async (path) => {
+            return axios.get('http://localhost:5000/'+path)
+            .then((res)=> {
+                console.log(res)
+                if (res.status == 200)
+                    return res.data
+            })
+            .then((res)=> {
+                return res
+                
+            })
+        }
+        Vue.prototype.$post = async (path, data) => {
+            return axios.post('http://localhost:5000/'+path)
+            .then((res)=> {
+                console.log(res)
+                if (res.status == 200)
+                    return res.data
+            })
+            .then((res)=> {
+                return res
+                
+            })
+        }
+        Vue.prototype.$put = async (path, data) => {
+            return axios.put('http://localhost:5000/'+path)
+            .then((res)=> {
+                console.log(res)
+                if (res.status == 200)
+                    return res.data
+            })
+            .then((res)=> {
+                return res
+                
+            })
+        }
+        Vue.prototype.$del = async (path, data) => {
+            return axios.delete('http://localhost:5000/'+path)
+            .then((res)=> {
+                console.log(res)
+                if (res.status == 200)
+                    return res.data
+            })
+            .then((res)=> {
+                return res
+                
+            })
+        }
     }
 })
 

@@ -19,11 +19,17 @@ const routes = [
     path: '/weather',
     name: 'Weather',
     component: () => import('../views/Weather.vue')
+  },
+  {
+    path: '/alert',
+    name: 'Alert',
+    component: () => import('../views/Alert.vue')
   }
 ]
 
 const router = new VueRouter({
-  routes
+  mode: 'history',
+  routes: routes
 })
 
 export default router

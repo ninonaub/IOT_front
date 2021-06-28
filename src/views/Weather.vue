@@ -1,14 +1,14 @@
 <template>
   <v-container>    
-    <Weather/>
+    <WeatherHandler/>
   </v-container>
 </template>
 
 <script>
-  import Weather from '@/components/weather/WeatherHandler.vue'
+  import WeatherHandler from '@/components/weather/WeatherHandler.vue'
 
   export default {
     name: 'Weather',
-    components: {Weather},
+    components: {WeatherHandler},
   }
 </script>

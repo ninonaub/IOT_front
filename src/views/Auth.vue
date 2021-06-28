@@ -22,7 +22,10 @@
     },
     methods:{
       getUsers(){
-
+        this.get('user')
+          .then((res)=> {
+            console.log(res)
+          })
       },
       setUser(user){
         console.log(user)

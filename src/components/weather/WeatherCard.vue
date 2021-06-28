@@ -6,7 +6,7 @@
     color="cell2"
   >
     <v-row class="pa-2" align="center">
-      <v-col class="px-1 py-0 capitalize title--2" >{{location}}</v-col>
+      <v-col class="px-1 pt-2 pb-0 capitalize title--2" >{{location}}</v-col>
       <v-col class="px-1 py-0" v-if="!onlyCurrent">
         <v-select
           v-model="display"

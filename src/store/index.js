@@ -18,7 +18,7 @@ export default new Vuex.Store({
     CHANGEUSER(state, user){
       state.user = user
       if (typeof state.user.dark_mode == 'undefined')
-        state.user.dark_mode = false
+        state.user.dark_mode = true
     }
   },
   actions: {

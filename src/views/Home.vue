@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <v-row class="text-center" v-if="false">
-      <v-col cols="12">
+    <v-row class="text-center">
+      <v-col cols="12" v-if="false">
         <v-img
           v-if="!$vuetify.theme.dark"
           :src="require('../assets/logo.svg')"
@@ -27,6 +27,9 @@
     </v-row>
     <v-row>
       <v-col col="6">
+        <Alert mode="carousel" />
+      </v-col>
+      <v-col col="6">
         <Weather mode="carousel" />
       </v-col>
     </v-row>
@@ -36,9 +39,10 @@
 
 <script>
   import Weather from '@/components/weather/WeatherHandler.vue'
-
+  import Alert from '@/components/alert/AlertHandler.vue'
   export default {
     name: 'Home',
-    components: {Weather},
+    components: {Weather, Alert},
+    
   }
 </script>
