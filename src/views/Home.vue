@@ -4,14 +4,14 @@
       <v-col cols="12" v-if="false">
         <v-img
           v-if="!$vuetify.theme.dark"
-          :src="require('../assets/logo.svg')"
+          :src="require('../assets/img/logo.svg')"
           class="my-6"
           contain
           height="20vh"
         />
         <v-img
           v-else
-          :src="require('../assets/logo_white.svg')"
+          :src="require('../assets/img/logo_white.svg')"
           class="my-6"
           contain
           height="20vh"
