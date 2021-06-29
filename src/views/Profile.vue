@@ -1,14 +1,11 @@
 <template>
   <v-container>
-    <v-row class="text-center">
-
+    <v-row class="mt-6 cell rounded-lg elevation-2 pa-3">
       <v-col class="mb-4" cols="12">
-        <h1 class="display-2 font-weight-bold mb-3">
+        <h1 class="display-2 font-weight-bold mb-3 text-center">
           Bonjour {{user.username}}
         </h1>
       </v-col>
-    </v-row>
-    <v-row class="m-0 cell rounded-lg elevation-2 pa-3">
       <v-col cols="12" sm="6" class="pa-1" hide-details >
         <v-switch
           v-model="user.micro"

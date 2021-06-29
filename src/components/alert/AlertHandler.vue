@@ -12,12 +12,12 @@
               </template>
               <div class="cell2">
                   <v-row class="m-0">
-                      <v-col cols="12" style="cursor: pointer" @clisk="modify = !modify">
+                      <v-col cols="12" class="pointer" @clisk="modify = !modify">
                         <v-icon color="primary" class="pr-2">mdi-pencil</v-icon>
                         Modifier
                       </v-col>
                       <div style="height: 1px; width: 100%;" class="cell4" />
-                      <v-col cols="12" @click="()=> {}" style="cursor: pointer">
+                      <v-col cols="12" @click="()=> {}" class="pointer">
                         <v-icon color="primary" class="pr-2">mdi-plus</v-icon>
                         Ajouter une alerte
                       </v-col>

@@ -28,9 +28,17 @@
     font-size: 1.3rem;
     font-weight: bold;
 }
-
+.background {
+    background-color: var(--v-background-base);
+}
 .cell {
     background-color: var(--v-cell-base);
+}
+.cell2 {
+    background-color: var(--v-cell2-base);
+}
+.cell3 {
+    background-color: var(--v-cell3-base);
 }
 .m-0 {
     margin: 0 !important;
@@ -44,3 +52,9 @@
 .v-snack__content {
     font-size: 1.1rem;
 }
+.pointer {
+    cursor: pointer;
+}
+.theme--light.v-application, .theme--dark.v-application {
+    background: none !important;
+  }

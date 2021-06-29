@@ -28,14 +28,14 @@
       <v-col cols="12" sm="6" class="py-4" v-for="location in locations" :key="location" v-show="ready == 0" v-else>
         <WeatherCard :location="location" @ready="ready--" />
       </v-col>
-      <v-col  v-if="mode !== 'carousel' && ready ===0" align="center">
-        <v-row align="center" justify="center">
-          <v-icon size="100">mdi-plus-circle</v-icon>
-          Ajouter un lieux
+      <v-col  v-if="mode !== 'carousel' && ready ===0" style="align-self: center;">
+        <v-row align="center" style="padding-left: 4rem;">
+          <v-icon size="70" class="pointer" @click="action = 'create'; dialog = true">mdi-plus-circle</v-icon>
+          <span class="pointer" @click="action = 'add'; dialog = true" >Ajouter un lieux</span>
         </v-row>
-        <v-row align="center" justify="center">
-          Supprimer un lieux
-          <v-icon size="100">mdi-delete-circle</v-icon>
+        <v-row align="center" style="justify-content: flex-end;padding-right: 4rem; margin-top: 0;">
+          <span class="pointer" @click="action = 'delete'; dialog = true">Supprimer un lieux</span>
+          <v-icon size="70" class="pointer" @click="action = 'delete'; dialog = true">mdi-delete-circle</v-icon>
         </v-row>
       </v-col>
       <v-col  v-if="ready !== 0" >
@@ -44,27 +44,42 @@
 
 
       <v-dialog
-      v-model="action"
-      max-width="290"
+      v-model="dialog"
+      max-width="500"
     >
       <v-card>
         <v-card-title class="text-h5">
-          Suppression d'un compte
+          {{action === 'delete' ? 'Suppression d\'une localisation': 'Ajout d\'une localisation'}}
         </v-card-title>
         <v-card-text>
-          {{action === 'delete' ? 'Êtes-vous sûr de vouloir suuprimmer ?': 'Veuillez donner une adresse complète.'}}
+          {{action === 'delete' ? 'Êtes-vous sûr de vouloir supprimer ?': 'Veuillez donner une adresse complète.'}}
+          <v-text-field
+            v-if="action === 'create'"
+            class="pt-4"
+            v-model="create_form"
+            label="Localisation"
+          ></v-text-field>
+          <v-select
+            v-if="action === 'delete'"
+            class="pt-4"
+            v-model="delete_form"
+            :items="locations"
+            label="Localisations"
+          ></v-select>
         </v-card-text>
+        
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
             color="red darken-1"
-            @click="dialog = false"
+            @click="dialog = false; create_form = ''; delete_form = []"
           >
             Annuler
           </v-btn>
           <v-btn
             color="green darken-1"
-            @click="deleteLocation()"
+            :disabled="action === 'delete' ? delete_form.length === 0 : !create_form "
+            @click="action === 'delete' ? deleteLocation(): createLocation()"
           >
             Valider
           </v-btn>
@@ -85,6 +100,8 @@ export default {
       ready: -1,
       dialog: false,
       action: null,
+      create_form: '',
+      delete_form: []
     }),
     methods:{
       getLocations(){

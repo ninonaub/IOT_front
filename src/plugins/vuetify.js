@@ -13,6 +13,7 @@ export default new Vuetify({
           light: {
             scroll: colors.grey.darken3,
             scrollback: colors.shades.white,
+            background: colors.shades.white,
             cell: colors.grey.lighten4,
             cell2: colors.grey.lighten3,
             cell3: colors.grey.lighten2,
@@ -22,6 +23,7 @@ export default new Vuetify({
           dark: {
             scroll: colors.grey.base,
             scrollback:  colors.shades.black,
+            background: '#111',
             cell: '#191919',
             cell2: colors.grey.darken4,
             cell3: colors.grey.darken3,

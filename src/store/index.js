@@ -15,7 +15,8 @@ export default new Vuex.Store({
       color: '',
       icon: ''
     },
-    alert: false
+    alert: false,
+    weather: null
   },
   mutations: {
     CHANGEDARKMODE(state, val){
@@ -33,6 +34,9 @@ export default new Vuex.Store({
       
       if (typeof state.user.dark_mode == 'undefined')
         state.user.dark_mode = true
+    },
+    CHANGEWEATHER(state, weather){
+      state.weather = weather
     },
     CHANGESNACKBAR(state, [seen, snackbar, style]){
       state.alert = false
@@ -64,6 +68,18 @@ export default new Vuex.Store({
       setTimeout(() => {
         context.commit('CHANGESNACKBAR', [false, '', 'error'])
       }, 5000);
+    },
+    changeUser(context, user){
+      context.commit('CHANGEUSER', user)
+      /* if (user.city){
+        Vue.prototype.$apiWeather(user.city, 'current')
+        .then((res)=>{
+          context.commit('CHANGEWEATHER',res.weather)
+        })
+      }else {
+        context.commit('CHANGEWEATHER', null)
+      } */
+      
     }
   },
   modules: {

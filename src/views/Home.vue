@@ -1,24 +1,7 @@
 <template>
   <v-container>
-    <v-row class="text-center">
-      <v-col cols="12" v-if="false">
-        <v-img
-          v-if="!$vuetify.theme.dark"
-          :src="require('../assets/img/logo.svg')"
-          class="my-6"
-          contain
-          height="20vh"
-        />
-        <v-img
-          v-else
-          :src="require('../assets/img/logo_white.svg')"
-          class="my-6"
-          contain
-          height="20vh"
-        />
-      </v-col>
-
-      <v-col class="mb-4" cols="12">
+    <v-row class="text-center mx-0">
+      <v-col class="mb-4 cell rounded-b-lg" cols="12">
         <h1 class="display-2 font-weight-bold mb-3">
           Bienvenue sur Wake All
         </h1>
