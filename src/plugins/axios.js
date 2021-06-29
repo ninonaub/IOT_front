@@ -43,13 +43,11 @@ Vue.use({
         async function asyncGeo(location, condition) {
             return axios.get('https://api.opencagedata.com/geocode/v1/json?q='+encodeURIComponent(location)+'&key=2d585c3db22b40908000e8d6cf2b845a')
             .then((res)=> {
-                console.log(res)
                 if (res.status == 200)
                     return res.data
             })
             .then((res)=> {
                 let location = {}
-                console.log(res)
                 if (res.results){
                     location.lat = res.results[0].geometry.lat
                     location.lon = res.results[0].geometry.lng
@@ -72,7 +70,6 @@ Vue.use({
           };
         Vue.prototype.$get = async (path, data={}) => {
             let params= {params: data }
-            console.log(params)
             return axios.get('http://localhost:5000/'+path, params)
             .then((res)=> {
                 console.log(res)
@@ -97,7 +94,7 @@ Vue.use({
                 
             })
         }
-        Vue.prototype.$put = async (path, data) => {
+        Vue.prototype.$put = async (path, data = {}) => {
             let params= JSON.stringify(data)
             return axios.put('http://localhost:5000/'+path, params, axiosConfig)
             .then((res)=> {
@@ -111,7 +108,7 @@ Vue.use({
             })
         }
 
-        Vue.prototype.$patch = async (path, data) => {
+        Vue.prototype.$patch = async (path, data = {}) => {
             let params= JSON.stringify(data)
             return axios.patch('http://localhost:5000/'+path, params, axiosConfig)
             .then((res)=> {
@@ -124,8 +121,9 @@ Vue.use({
                 
             })
         }
-        Vue.prototype.$del = async (path, data) => {
-            return axios.delete('http://localhost:5000/'+path)
+        Vue.prototype.$del = async (path, data= {}) => {
+            let params= {params: data, headers: axiosConfig.headers }
+            return axios.delete('http://localhost:5000/'+path, params, axiosConfig)
             .then((res)=> {
                 console.log(res)
                 if (res.status == 200)

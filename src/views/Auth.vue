@@ -44,21 +44,40 @@
         this.$patch('user/active', data)
           .then((res)=> {
             console.log(res)
+            this.$store.dispatch('changeSnackbar', [true, res, 'success'])
           })
         this.$store.commit('CHANGEUSER', user)
         this.$router.push('/')
       },
       createUser(user){
-        let data = {'username': 'Mm', 'micro': true, 'led': true, alarm: true, city: 'Lyon, France', 'audio': true, active: false }//users (username, micro, led, alarm, city, audio, active) VALUES (?,?,?,?,?,?,?)",
+        let data = {
+          'username': user.username,
+          'micro': user.micro ? 'ON': 'OFF',
+          'led': user.led ? 'ON': 'OFF',
+          alarm: user.alarm ? 'ON': 'OFF', 
+          city: 'Lyon, France',
+          'audio': user.audio ? 'ON': 'OFF',
+          active: user.active ? 1 : 0
+        }
         this.$post('user', data)
           .then((res)=> {
             console.log(res)
+            if (res === 'Record successfully'){
+              this.$store.dispatch('changeSnackbar', [true, res, 'success'])
+              if(data.active)
+                this.$router.push('/')
+                else {
+                  this.users.push(data)
+                }
+            }
+            else {
+              this.$store.dispatch('changeSnackbar', [true, res, 'error'])
+            }
           })
       }
     },
     created(){
       this.getUsers()
-      this.createUser()
     }
   }
 </script>

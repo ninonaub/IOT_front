@@ -22,56 +22,59 @@
             @submit.prevent="submit"
           >
             <v-container fluid>
-              <v-row>
-                <v-col
-                  cols="12"
-                  sm="6"
-                >
+              <v-row class="m-0">
+                <v-col cols="12" class="pa-1">
                   <v-text-field
                     v-model="form.username"
-                    :rules="rules.username"
+                    :rules="rules.name"
                     label="Nom d'utilisateur"
                     required
                   ></v-text-field>
                 </v-col>
-                <v-col
-                  cols="12"
-                  sm="6"
-                >
+                <v-col cols="12" sm="6" class="pa-1" hide-details >
                   <v-switch
-                    v-model="switch1"
-                    :label="`Switch 1: ${switch1.toString()}`"
+                    v-model="form.micro"
+                    label="Micro actif"
                   ></v-switch>
                 </v-col>
-                <v-col
-                  cols="12"
-                  sm="6"
-                >
-                  
+                <v-col cols="12" sm="6" class="pa-1"  hide-details >
+                  <v-switch
+                    v-model="form.led"
+                    label="Lumière active"
+                  ></v-switch>
                 </v-col>
-                <v-col
-                  cols="12"
-                  sm="6"
-                >
-                  
+                <v-col cols="12" sm="6" class="pa-1"  hide-details >
+                  <v-switch
+                    v-model="form.audio"
+                    label="Audio actif"
+                  ></v-switch>
+                </v-col>
+                <v-col cols="12" sm="6" class="pa-1"  hide-details >
+                  <v-switch
+                    v-model="form.alarm"
+                    label="Alarme active"
+                  ></v-switch>
+                </v-col>
+                <v-col cols="12" sm="6" class="pa-1" >
+                  <v-text-field
+                    v-model="form.city"
+                    label="Localisation"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" class="pa-1" hide-details >
+                  <v-switch
+                    v-model="form.active"
+                    label="Se connecter après la validation ?"
+                  ></v-switch>
                 </v-col>
               </v-row>
             </v-container>
             <v-card-actions>
               <v-spacer></v-spacer>
-
-              <v-btn
-                color="red darken-1"
-                @click="resetForm"
-              >
+              <v-btn color="red darken-1" @click="resetForm">
                 Annuler
               </v-btn>
-
-              <v-btn
-                :disabled="!formIsValid"
-                color="green darken-1"
-                type="submit"
-              >
+              <v-btn :disabled="!formIsValid" color="green darken-1" type="submit" >
                 Valider
               </v-btn>
             </v-card-actions>
@@ -91,8 +94,8 @@
         led: true,
         alarm: true,
         city: '',
-        audio: true
-       
+        audio: true,
+        active: true
       })
 
       return {
@@ -112,7 +115,7 @@
     computed: {
       formIsValid () {
         return (
-          this.form.name
+          this.form.username
         )
       },
     },
@@ -123,9 +126,9 @@
         this.$refs.form.reset()
       },
       submit(){
-        this.snackbar = true
         this.$emit('newUser', this.form)
         this.resetForm()
+        this.dialog = false
       },
     } 
   }

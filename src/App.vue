@@ -16,13 +16,24 @@
           width="50"
         />
       </div>
-
       <v-spacer></v-spacer>
-
-      <UserMenu />
+      <UserMenu v-if="connected" />
     </v-app-bar>
 
+    <v-snackbar
+      style="z-index: 10;"
+      :value="alert"
+      absolute
+      :color="snackbar.color"
+      top
+      shaped
+      transition="scroll-y-transition"
+    >
+      <v-icon>{{snackbar.icon}}</v-icon>
+      {{snackbar.message}}
+    </v-snackbar>
     <v-main style="height: calc(100%-55rem;)">
+      
       <router-view/>
     </v-main>
   </v-app>
@@ -33,16 +44,28 @@ import UserMenu from '@/components/navbar/UserMenu.vue'
 export default {
   name: 'App',
   components: {UserMenu},
- 
-  data: () => ({
-  }),
+  data(){
+    return {
+      snackbar: {},
+      connected: false
+    }
+  },
+  computed: {
+    alert(){
+      this.snackbar = this.$store.state.snackbar
+      return this.$store.state.alert
+    }
+  },
   created(){
     this.$vuetify.theme.dark = this.$store.state.user['dark_mode']
     this.$get('user/active')
       .then((res)=> {
-        console.log('active',res, this.$route.name)
         if (res === null && this.$route.name !== 'Auth')
           this.$router.push('/auth')
+        if( res !== null && !this.$store.state.user['username'] ){
+          this.$store.commit ('CHANGEUSER', res)
+          this.connected = true
+        }
       })
   }
 };
