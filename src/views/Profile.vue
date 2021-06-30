@@ -7,6 +7,9 @@
         </h1>
       </v-col>
       <v-col cols="12" sm="6" class="pa-1" hide-details >
+        <AvatarField v-model="user.image" height="50" />
+      </v-col>
+      <v-col cols="12" sm="6" class="pa-1" hide-details >
         <v-switch
           v-model="user.micro"
           label="Micro actif"
@@ -87,11 +90,10 @@
 </template>
 
 <script>
-  import Weather from '@/components/weather/WeatherHandler.vue'
-  import Alarm from '@/components/alarm/AlarmHandler.vue'
+  import AvatarField from '@/components/ui/AvatarField.vue'
   export default {
     name: 'Profile',
-    components: {Weather, Alarm},
+    components: { AvatarField},
     data() {
       return {
         user: this.$store.state.user,

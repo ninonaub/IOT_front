@@ -76,9 +76,10 @@ export default new Vuex.Store({
       context.commit('CHANGEUSER', user)
       if (user.city){
         Vue.prototype.$apiWeather(user.city, 'current')
-        .then((res)=>{
-          context.commit('CHANGEWEATHER',res.weather)
-        })
+          .then((res)=>{
+            console.log(res)
+            context.commit('CHANGEWEATHER',res.weather)
+          })
       }else {
         context.commit('CHANGEWEATHER', null)
       }

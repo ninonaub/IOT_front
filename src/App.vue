@@ -78,19 +78,7 @@ export default {
           this.$store.dispatch('changeUser', res)
           this.connected = true
           this.ready = true
-          /* if (res.city){
-            this.$apiWeather(res.city, 'current')
-              .then((res)=>{
-                console.log(res.weather, 'hkjhqesf')
-                this.background = res.weather.code <= 233 ? 'lightning' : res.weather.code <= 522 ? 'rain' : res.weather.code <= 623 ? 'snow' : res.weather.code <= 751 || res.weather.code >= 803 ? 'cloudy' : 'sun'
-                this.$store.commit('CHANGEWEATHER',res.weather)
-                this.ready = true
-              })
-          }else {
-            this.background = null
-            this.$store.commit('CHANGEWEATHER', null)
-            this.ready = true
-          } */
+          
         }
       })
   }

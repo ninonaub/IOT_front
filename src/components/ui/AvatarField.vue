@@ -2,16 +2,18 @@
     <div>
         <v-menu max-width="300px" offset-y :disabled="disabled" :max-height="menuHeight">
             <template v-slot:activator="{ on }">
-                <v-img
-                    v-if="new_val"
-                    style="border-radius: 50%"
-                    :height="height"
-                    :width="height"
-                    class="elevation-2"
-                    :src="require('@/assets/avatars/'+ new_val)"
-                    v-on="on"
-                ></v-img>
-                <v-icon v-on="on" v-else :size="height">mdi-account-circle</v-icon>
+                <div :style="{height: `${height}px`, width: `${height}px`}">
+                    <v-img
+                        v-if="new_val"
+                        style="border-radius: 50%"
+                        :height="height"
+                        :width="height"
+                        class="elevation-2"
+                        :src="require('@/assets/avatars/'+ new_val)"
+                        v-on="on"
+                    ></v-img>
+                    <v-icon v-on="on" v-show="!new_val" :size="height">mdi-account-circle</v-icon>
+                </div>
               </template>
               <div class="cell2">
                   <v-row class="m-0" align="center">
@@ -35,7 +37,7 @@ export default {
     props: {
         value: {},
         disabled: {type: Boolean, default: false },
-        height: {},
+        height: {default: '50'},
         menuHeight: {default: '400'},
     },
     data(){

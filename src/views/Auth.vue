@@ -41,10 +41,10 @@
       },
       setUser(user){
         console.log(user)
-        let data = {'username': user.username }
+        let data = {'username': user }//{'username': user.username }
         this.$patch('user/active', data)
           .then((res)=> {
-            console.log(res)
+            console.log(res, 'setuser')
             this.$store.dispatch('changeSnackbar', [true, res, 'success'])
           })
         this.$store.commit('CHANGEUSER', user)
@@ -56,7 +56,7 @@
           'micro': user.micro ? 'ON': 'OFF',
           'led': user.led ? 'ON': 'OFF',
           alarm: user.alarm ? 'ON': 'OFF', 
-          city: 'Lyon, France',
+          city: user.city,
           'audio': user.audio ? 'ON': 'OFF',
           'image': user.image,
           active: user.active ? 1 : 0
