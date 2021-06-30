@@ -54,49 +54,35 @@ export default {
     return {
       snackbar: {},
       connected: false,
-      background: null,
       ready: false
-    }
-  },
-  watch: {
-    '$store.state.user'(val, oldval){
-      if (val.username !== oldval.username && val.city){
-            this.$apiWeather(val.city, 'current')
-              .then((res)=>{
-                console.log(res.weather, 'watch')
-                this.background = res.weather.code <= 233 ? 'lightning' : res.weather.code <= 522 ? 'rain' : res.weather.code <= 623 ? 'snow' : res.weather.code <= 751 || res.weather.code >= 803 ? 'cloudy' : 'sun'
-                this.background = 'lightning'
-                this.$store.commit('CHANGEWEATHER',res.weather)
-                this.ready = true
-              })
-          }else {
-            this.background = null
-            this.$store.commit('CHANGEWEATHER', null)
-            this.ready = true
-          }
     }
   },
   computed: {
     alert(){
       this.snackbar = this.$store.state.snackbar
       return this.$store.state.alert
+    },
+    background(){
+      return this.$store.state.background
     }
   },
   created(){
     this.$vuetify.theme.dark = this.$store.state.user['dark_mode']
     this.$get('user/active')
       .then((res)=> {
-        if (res === null && this.$route.name !== 'Auth')
+        if (res === null && this.$route.name !== 'Auth'){
           this.$router.push('/auth')
+          this.ready = true
+        }
         if( res !== null && !this.$store.state.user['username'] ){
           this.$store.dispatch('changeUser', res)
           this.connected = true
-          if (res.city){
+          this.ready = true
+          /* if (res.city){
             this.$apiWeather(res.city, 'current')
               .then((res)=>{
                 console.log(res.weather, 'hkjhqesf')
                 this.background = res.weather.code <= 233 ? 'lightning' : res.weather.code <= 522 ? 'rain' : res.weather.code <= 623 ? 'snow' : res.weather.code <= 751 || res.weather.code >= 803 ? 'cloudy' : 'sun'
-                this.background = 'rain'
                 this.$store.commit('CHANGEWEATHER',res.weather)
                 this.ready = true
               })
@@ -104,7 +90,7 @@ export default {
             this.background = null
             this.$store.commit('CHANGEWEATHER', null)
             this.ready = true
-          }
+          } */
         }
       })
   }

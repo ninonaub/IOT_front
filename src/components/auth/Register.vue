@@ -58,7 +58,7 @@
                 <v-col cols="12" sm="6" class="pa-1" >
                   <v-text-field
                     v-model="form.city"
-                    label="Localisation"
+                    label="Votre ville"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" class="pa-1" hide-details >

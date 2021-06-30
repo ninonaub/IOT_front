@@ -16,7 +16,8 @@ export default new Vuex.Store({
       icon: ''
     },
     alert: false,
-    weather: null
+    weather: null,
+    background: 'sun'
   },
   mutations: {
     CHANGEDARKMODE(state, val){
@@ -37,6 +38,8 @@ export default new Vuex.Store({
     },
     CHANGEWEATHER(state, weather){
       state.weather = weather
+      console.log('weather', weather.code)
+      state.background = weather.code <= 233 ? 'lightning' : weather.code <= 522 ? 'rain' : weather.code <= 623 ? 'snow' : weather.code <= 751 || weather.code >= 803 ? 'cloudy' : 'sun'
     },
     CHANGESNACKBAR(state, [seen, snackbar, style]){
       state.alert = false
@@ -71,14 +74,14 @@ export default new Vuex.Store({
     },
     changeUser(context, user){
       context.commit('CHANGEUSER', user)
-      /* if (user.city){
+      if (user.city){
         Vue.prototype.$apiWeather(user.city, 'current')
         .then((res)=>{
           context.commit('CHANGEWEATHER',res.weather)
         })
       }else {
         context.commit('CHANGEWEATHER', null)
-      } */
+      }
       
     }
   },

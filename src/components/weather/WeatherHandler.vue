@@ -2,7 +2,7 @@
     <v-row class="text-center m-2 p-0 elevation-4 rounded-lg cell" style="overflow: hidden;">
       <v-col class="px-0 py-0" cols="12">
         <v-row class="m-0">
-          <v-col :style="$route.name !== 'Alert' ? {cursor: 'pointer'}: {}" class="title--1" @click="$route.name !== 'Weather' ? $router.push('/Weather'): null ">Météo</v-col>
+          <v-col :style="$route.name !== 'Weather' ? {cursor: 'pointer'}: {}" class="title--1" @click="$route.name !== 'Weather' ? $router.push('/weather'): null ">Météo</v-col>
       
         </v-row>
         

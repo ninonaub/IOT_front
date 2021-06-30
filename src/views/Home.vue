@@ -10,7 +10,7 @@
     </v-row>
     <v-row>
       <v-col col="6">
-        <Alert mode="carousel" />
+        <Alarm mode="carousel" />
       </v-col>
       <v-col col="6">
         <Weather mode="carousel" />
@@ -22,10 +22,10 @@
 
 <script>
   import Weather from '@/components/weather/WeatherHandler.vue'
-  import Alert from '@/components/alert/AlertHandler.vue'
+  import Alarm from '@/components/alarm/AlarmHandler.vue'
   export default {
     name: 'Home',
-    components: {Weather, Alert},
+    components: {Weather, Alarm},
     
   }
 </script>

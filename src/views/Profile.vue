@@ -34,6 +34,7 @@
         <v-text-field
           v-model="user.city"
           label="Localisation"
+          messages="Veuillez entrer une adresse commplète, en séparant la ville et le pays d'une virgule."
         ></v-text-field>
       </v-col>
       <v-col cols="12">
@@ -87,10 +88,10 @@
 
 <script>
   import Weather from '@/components/weather/WeatherHandler.vue'
-  import Alert from '@/components/alert/AlertHandler.vue'
+  import Alarm from '@/components/alarm/AlarmHandler.vue'
   export default {
     name: 'Profile',
-    components: {Weather, Alert},
+    components: {Weather, Alarm},
     data() {
       return {
         user: this.$store.state.user,

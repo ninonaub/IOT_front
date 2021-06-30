@@ -1,11 +1,11 @@
 <template>
   <v-container>
-    <div>
+    <div class="cell rounded-lg ma-2">
       <v-row justify="center" v-if="!ready" >
         <v-progress-circular class="v-col" :size="70" :width="7" color="amber" indeterminate />
       </v-row>
       <template v-else>
-        <v-row justify="center" v-if="users.length === 0" >
+        <v-row class="title--2 pt-3" justify="center" v-if="users.length === 0" >
           Créez votre premier utilisateur !
         </v-row>
         <Login :users="users" @user="(user)=> {setUser(user)}" v-else/>
@@ -18,7 +18,7 @@
   import Login from '../components/auth/Login.vue'
   import Register from '../components/auth/Register.vue'
   export default {
-    name: 'Home',
+    name: 'Auth',
     components: {
       Login,
       Register
@@ -31,6 +31,7 @@
     },
     methods:{
       getUsers(){
+        console.log('all')
         this.$get('user/all')
           .then((res)=> {
             console.log('res',res)
