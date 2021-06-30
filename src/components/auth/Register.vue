@@ -22,8 +22,11 @@
             @submit.prevent="submit"
           >
             <v-container fluid>
-              <v-row class="m-0">
-                <v-col cols="12" class="pa-1">
+              <v-row class="m-0" align="center">
+                <v-col cols="12" sm="6" class="pa-1">
+                  <AvatarField v-model="form.image" height="50" />
+                </v-col>
+                <v-col cols="12" sm="6" class="pa-1">
                   <v-text-field
                     v-model="form.username"
                     :rules="rules.name"
@@ -85,11 +88,15 @@
   </v-row>
 </template>
 <script>
+import AvatarField from '@/components/ui/AvatarField.vue'
+
   export default {
     name: 'Register',
+    components: {AvatarField},
     data () {
       const defaultForm = Object.freeze({
         username: '',
+        image: '',
         micro: true,
         led: true,
         alarm: true,

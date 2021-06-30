@@ -3,11 +3,93 @@ import axios from 'axios'
 
 Vue.use({
     install (Vue) {
-         
+        let axiosConfig = {
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                "Access-Control-Allow-Origin": "*",
+                'accept': 'application/json',
+            }
+        }
+
+        Vue.prototype.$get = async (path, data={}) => {
+            let params= {params: data }
+            return axios.get('http://localhost:5000/'+path, params)
+            .then((res)=> {
+                console.log(res)
+                if (res.status == 200)
+                    return res.data
+            })
+            .then((res)=> {
+                if (res.code && res.code == 200)
+                    return res.message
+                if (res.code && res.code == 400)
+                    Vue.$store.dispatch('changeSnackbar', [true, res.message, 'error'])
+            })
+        }
+        Vue.prototype.$post = async (path, data = {}) => {
+            let params= JSON.stringify(data)
+            return axios.post('http://localhost:5000/'+ path, params, axiosConfig )
+            .then((res)=> {
+                console.log(res)
+                if (res.status == 200)
+                    return res.data
+            })
+            .then((res)=> {
+                if (res.code && res.code == 200)
+                    return res.message
+                if (res.code && res.code == 400)
+                    Vue.$store.dispatch('changeSnackbar', [true, res.message, 'error'])
+            })
+        }
+        Vue.prototype.$put = async (path, data = {}) => {
+            let params= JSON.stringify(data)
+            return axios.put('http://localhost:5000/'+path, params, axiosConfig)
+            .then((res)=> {
+                console.log(res)
+                if (res.status == 200)
+                    return res.data
+            })
+            .then((res)=> {
+                if (res.code && res.code == 200)
+                    return res.message
+                if (res.code && res.code == 400)
+                    Vue.$store.dispatch('changeSnackbar', [true, res.message, 'error'])
+            })
+        }
+        Vue.prototype.$patch = async (path, data = {}) => {
+            let params= JSON.stringify(data)
+            return axios.patch('http://localhost:5000/'+path, params, axiosConfig)
+            .then((res)=> {
+                console.log(res)
+                if (res.status == 200)
+                    return res.data
+            })
+            .then((res)=> {
+                if (res.code && res.code == 200)
+                    return res.message
+                if (res.code && res.code == 400)
+                    Vue.$store.dispatch('changeSnackbar', [true, res.message, 'error'])
+            })
+        }
+        Vue.prototype.$del = async (path, data= {}) => {
+            let params= {params: data, headers: axiosConfig.headers }
+            return axios.delete('http://localhost:5000/'+path, params, axiosConfig)
+            .then((res)=> {
+                console.log(res)
+                if (res.status == 200)
+                    return res.data
+            })
+            .then((res)=> {
+                if (res.code && res.code == 200)
+                    return res.message
+                if (res.code && res.code == 400)
+                    Vue.$store.dispatch('changeSnackbar', [true, res.message, 'error'])
+            })
+        }
+
         Vue.prototype.$apiWeather = async (location, condition = 'current') => {
             return asyncGeo(location, condition)
         }
-        
         async function asyncWeatherCurrent(geo) {
             return axios.get('http://api.weatherbit.io/v2.0/current?lang=fr&lat='+geo.lat+'&lon='+geo.lon+'&key=c549558b6a7f4130a7cbd606c9b0b6cb')
                 .then((res)=> {
@@ -19,7 +101,6 @@ Vue.use({
                 })
         }
         async function asyncWeatherHourly(geo) {
-
             return axios.get('http://api.weatherbit.io/v2.0/forecast/hourly?lang=fr&lat='+geo.lat+'&lon='+geo.lon+'&key=c549558b6a7f4130a7cbd606c9b0b6cb&hours=48')
                 .then((res)=> {
                     if (res.status == 200)
@@ -30,7 +111,6 @@ Vue.use({
                 })
         }
         async function asyncWeatherDaily(geo) {
-
             return axios.get('http://api.weatherbit.io/v2.0/forecast/daily?lang=fr&lat='+geo.lat+'&lon='+geo.lon+'&key=c549558b6a7f4130a7cbd606c9b0b6cb')
                 .then((res)=> {
                     if (res.status == 200)
@@ -58,79 +138,6 @@ Vue.use({
                     else if (condition == 'daily')
                         return asyncWeatherDaily(location)
                 }
-                
-            })
-        }
-        let axiosConfig = {
-            headers: {
-                'Content-Type': 'application/json;charset=UTF-8',
-                "Access-Control-Allow-Origin": "*",
-                'accept': 'application/json',
-            }
-          };
-        Vue.prototype.$get = async (path, data={}) => {
-            let params= {params: data }
-            return axios.get('http://localhost:5000/'+path, params)
-            .then((res)=> {
-                console.log(res)
-                if (res.status == 200)
-                    return res.data
-            })
-            .then((res)=> {
-                return res
-                
-            })
-        }
-        Vue.prototype.$post = async (path, data = {}) => {
-            let params= JSON.stringify(data)
-            return axios.post('http://localhost:5000/'+ path, params, axiosConfig )
-            .then((res)=> {
-                console.log(res)
-                if (res.status == 200)
-                    return res.data
-            })
-            .then((res)=> {
-                return res
-                
-            })
-        }
-        Vue.prototype.$put = async (path, data = {}) => {
-            let params= JSON.stringify(data)
-            return axios.put('http://localhost:5000/'+path, params, axiosConfig)
-            .then((res)=> {
-                console.log(res)
-                if (res.status == 200)
-                    return res.data
-            })
-            .then((res)=> {
-                return res
-                
-            })
-        }
-
-        Vue.prototype.$patch = async (path, data = {}) => {
-            let params= JSON.stringify(data)
-            return axios.patch('http://localhost:5000/'+path, params, axiosConfig)
-            .then((res)=> {
-                console.log(res)
-                if (res.status == 200)
-                    return res.data
-            })
-            .then((res)=> {
-                return res
-                
-            })
-        }
-        Vue.prototype.$del = async (path, data= {}) => {
-            let params= {params: data, headers: axiosConfig.headers }
-            return axios.delete('http://localhost:5000/'+path, params, axiosConfig)
-            .then((res)=> {
-                console.log(res)
-                if (res.status == 200)
-                    return res.data
-            })
-            .then((res)=> {
-                return res
                 
             })
         }

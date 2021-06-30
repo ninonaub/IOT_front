@@ -58,6 +58,7 @@
           alarm: user.alarm ? 'ON': 'OFF', 
           city: 'Lyon, France',
           'audio': user.audio ? 'ON': 'OFF',
+          'image': user.image,
           active: user.active ? 1 : 0
         }
         this.$post('user', data)
@@ -68,7 +69,7 @@
               if(data.active)
                 this.$router.push('/')
                 else {
-                  this.users.push(data)
+                  this.users.push(data.username)
                 }
             }
             else {

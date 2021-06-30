@@ -105,7 +105,7 @@ export default {
     }),
     methods:{
       getLocations(){
-
+        
       },
       deleteLocation(){
 

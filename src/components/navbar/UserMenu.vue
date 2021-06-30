@@ -14,12 +14,12 @@
                 >
                     <v-col style="max-height: 120px; max-width: 110px; padding: 10px 5px;" align-self="center" align-items="center">
                         <v-img
-                            v-if="user.src"
+                            v-if="user.image"
                             style="border-radius: 50%"
                             height="100px"
                             width="100px"
                             class="elevation-2"
-                            :src="user.src"
+                            :src="require('@/assets/avatars/'+user.image)"
                         ></v-img>
                         <v-icon v-else size="100">mdi-account-circle</v-icon>
                     </v-col>

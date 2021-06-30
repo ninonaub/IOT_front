@@ -14,7 +14,7 @@
     >
       <v-carousel-item
         v-for="(user) in users"
-        :key="user.name"
+        :key="user"
       >
         <!-- <v-sheet
           :color="user.color ? user.color : ''"
@@ -28,12 +28,12 @@
           >
             <v-col cols="auto" style="height: 200px;" align-self="center" align-items="center">
               <v-img
-                v-if="user.src"
+                v-if="user.image"
                 style="border-radius: 50%"
                 height="200"
                 width="200"
                 class="elevation-2"
-                :src="user.src"
+                :src="require('@/assets/avatars/' + user.image)"
                 @click="$emit('user', user)"
               ></v-img>
               <v-icon @click="$emit('user', user)" v-else size="200">mdi-account-circle</v-icon>

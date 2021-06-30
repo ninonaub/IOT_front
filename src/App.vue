@@ -11,7 +11,7 @@
           alt="Vuetify Logo"
           class="shrink mr-2"
           contain
-          :src="require('./assets/img/logo_white.svg')"
+          :src="require('@/assets/img/logo_white.svg')"
           transition="scale-transition"
           width="50"
         />
@@ -36,7 +36,7 @@
       <div style="position: fixed; top: 20px; width: 100%; height: 100% ; z-index:-1;" class="background"></div>
       <template >
         <video v-show="ready" v-if="background" style=" position: fixed; top: 20px; width: 100%; height: 100%; z-index:-1;" autoplay muted loop id="myVideo" preload>
-          <source :src="require('./assets/videos/'+ background +'.mp4')" type="video/mp4">
+          <source :src="require('@/assets/videos/'+ background +'.mp4')" type="video/mp4">
         </video>
         <router-view v-show="ready"/>
       </template>
