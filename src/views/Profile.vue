@@ -6,40 +6,47 @@
           Bonjour {{user.username}}
         </h1>
       </v-col>
-      <v-col cols="12" sm="6" class="pa-1" hide-details >
-        <AvatarField v-model="user.image" height="50" />
+      <v-col cols="12" sm="6" class="pa-1" hide-details align="center">
+        <AvatarField v-model="user.image" height="150" />
       </v-col>
       <v-col cols="12" sm="6" class="pa-1" hide-details >
-        <v-switch
-          v-model="user.micro"
-          label="Micro actif"
-        ></v-switch>
+        <v-row>
+          <v-col>
+            <v-switch
+              v-model="user.micro"
+              label="Micro actif"
+            ></v-switch>
+          </v-col>
+          <v-col>
+            <v-switch
+              v-model="user.led"
+              label="Lumière active"
+            ></v-switch>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-switch
+              v-model="user.audio"
+              label="Audio actif"
+            ></v-switch>
+          </v-col>
+          <v-col>
+            <v-switch
+              v-model="user.alarm"
+              label="Alarme active"
+            ></v-switch>
+          </v-col>
+          <v-col cols="12" class="pa-1" >
+            <v-text-field
+              v-model="user.city"
+              label="Localisation"
+              messages="Veuillez entrer une adresse commplète, en séparant la ville et le pays d'une virgule."
+            ></v-text-field>
+          </v-col>
+        </v-row>
       </v-col>
-      <v-col cols="12" sm="6" class="pa-1"  hide-details >
-        <v-switch
-          v-model="user.led"
-          label="Lumière active"
-        ></v-switch>
-      </v-col>
-      <v-col cols="12" sm="6" class="pa-1"  hide-details >
-        <v-switch
-          v-model="user.audio"
-          label="Audio actif"
-        ></v-switch>
-      </v-col>
-      <v-col cols="12" sm="6" class="pa-1"  hide-details >
-        <v-switch
-          v-model="user.alarm"
-          label="Alarme active"
-        ></v-switch>
-      </v-col>
-      <v-col cols="12" sm="6" class="pa-1" >
-        <v-text-field
-          v-model="user.city"
-          label="Localisation"
-          messages="Veuillez entrer une adresse commplète, en séparant la ville et le pays d'une virgule."
-        ></v-text-field>
-      </v-col>
+      
       <v-col cols="12">
         <v-row class="m-0">
           <v-col>
