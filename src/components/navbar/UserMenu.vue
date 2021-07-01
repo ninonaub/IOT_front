@@ -12,16 +12,9 @@
                     align="center"
                     justify="center"
                 >
+                    
                     <v-col style="max-height: 120px; max-width: 110px; padding: 10px 5px;" align-self="center" align-items="center">
-                        <v-img
-                            v-if="user.image"
-                            style="border-radius: 50%"
-                            height="100px"
-                            width="100px"
-                            class="elevation-2"
-                            :src="require('@/assets/avatars/'+user.image)"
-                        ></v-img>
-                        <v-icon v-else size="100">mdi-account-circle</v-icon>
+                        <AvatarField v-model="user.image" height="100" disabled />
                     </v-col>
                     <v-col cols="12" class="text-center px-1 py-1 title--2">{{user.username}}</v-col>
                 </v-row>
@@ -50,13 +43,15 @@
     </div>
 </template>
 <script>
-  export default {
-    name: 'UserMenu',
-    computed:{
-        user(){
-            return this.$store.state.user
+    import AvatarField from '@/components/ui/AvatarField.vue'
+    export default {
+        name: 'UserMenu',
+        components: {AvatarField},
+        computed:{
+            user(){
+                return this.$store.state.user
+            }
         }
+    
     }
- 
-  }
 </script>

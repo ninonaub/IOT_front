@@ -14,7 +14,7 @@
     >
       <v-carousel-item
         v-for="(user) in users"
-        :key="user"
+        :key="user.username"
       >
         <!-- <v-sheet
           :color="user.color ? user.color : ''"

@@ -41,7 +41,7 @@
       },
       setUser(user){
         console.log(user)
-        let data = {'username': user }//{'username': user.username }
+        let data = {'username': user.username }
         this.$patch('user/active', data)
           .then((res)=> {
             console.log(res, 'setuser')

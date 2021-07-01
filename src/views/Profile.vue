@@ -7,37 +7,37 @@
         </h1>
       </v-col>
       <v-col cols="12" sm="6" class="pa-1" hide-details align="center">
-        <AvatarField v-model="user.image" height="150" />
+        <AvatarField v-model="user.image" height="180" />
       </v-col>
       <v-col cols="12" sm="6" class="pa-1" hide-details >
-        <v-row>
-          <v-col>
+        <v-row class="m-0">
+          <v-col class="py-0">
             <v-switch
               v-model="user.micro"
               label="Micro actif"
             ></v-switch>
           </v-col>
-          <v-col>
+          <v-col class="py-0">
             <v-switch
               v-model="user.led"
               label="Lumière active"
             ></v-switch>
           </v-col>
         </v-row>
-        <v-row>
-          <v-col>
+        <v-row class="m-0">
+          <v-col class="py-0">
             <v-switch
               v-model="user.audio"
               label="Audio actif"
             ></v-switch>
           </v-col>
-          <v-col>
+          <v-col class="py-0">
             <v-switch
               v-model="user.alarm"
               label="Alarme active"
             ></v-switch>
           </v-col>
-          <v-col cols="12" class="pa-1" >
+          <v-col cols="12"  class="py-0 pr-5">
             <v-text-field
               v-model="user.city"
               label="Localisation"
@@ -130,6 +130,7 @@
           'alarm': this.user.alarm ? 'ON': 'OFF', 
           'city': this.user.city,
           'audio': this.user.audio ? 'ON': 'OFF',
+          'image': this.user.image,
           'active': this.user.active ? 1 : 0
         }
         this.$put('user', data)
